@@ -2,7 +2,7 @@
 
 先上一张堆排序动画演示图片：
 
-![图片来自维基百科](http://bubkoo.qiniudn.com/Sorting_heapsort_anim.gif)
+![图片来自维基百科](./pic/Sorting_heapsort_anim.gif)
 
 **1. 不得不说说二叉树**
 
@@ -19,11 +19,11 @@
 
 满二叉树：一棵深度为 k，且有 2<sup>k</sup> - 1 个节点称之为满二叉树
 
-![深度为 3 的满二叉树 full binary tree](http://bubkoo.qiniudn.com/full%C2%A0binary%C2%A0tree.png)
+![深度为 3 的满二叉树 full binary tree](./pic/full-binary-tree.png)
 
 完全二叉树：深度为 k，有 n 个节点的二叉树，当且仅当其每一个节点都与深度为 k 的满二叉树中序号为 1 至 n 的节点对应时，称之为完全二叉树
 
-![深度为 3 的完全二叉树 complete binary tree](http://bubkoo.qiniudn.com/complete%C2%A0binary%C2%A0tree.png)
+![深度为 3 的完全二叉树 complete binary tree](./pic/complete-binary-tree.png)
 
 <!--more-->
 
@@ -33,7 +33,7 @@
 
 如下图，是一个堆和数组的相互关系
 
-![堆和数组的相互关系](http://bubkoo.qiniudn.com/heap-and-array.png)
+![堆和数组的相互关系](./pic/heap-and-array.png)
 
 对于给定的某个结点的下标 i，可以很容易的计算出这个结点的父结点、孩子结点的下标：
 
@@ -41,7 +41,7 @@
 - Left(i) = 2i，i 的左子节点下标
 - Right(i) = 2i + 1，i 的右子节点下标
 
-![](http://bubkoo.qiniudn.com/heap-and-array-parent-children.png)
+![](./pic/heap-and-array-parent-children.png)
 
 二叉堆一般分为两种：最大堆和最小堆。
 
@@ -49,13 +49,13 @@
 - 最大堆中的最大元素值出现在根结点（堆顶）
 - 堆中每个父节点的元素值都大于等于其孩子结点（如果存在）
 
-![最大堆](http://bubkoo.qiniudn.com/max-heap.png)
+![最大堆](./pic/max-heap.png)
 
 最小堆：
 - 最小堆中的最小元素值出现在根结点（堆顶）
 - 堆中每个父节点的元素值都小于等于其孩子结点（如果存在）
 
-![最小堆](http://bubkoo.qiniudn.com/min-heap.png)
+![最小堆](./pic/min-heap.png)
 
 
 **3. 堆排序原理**
@@ -67,7 +67,7 @@
 
 继续进行下面的讨论前，需要注意的一个问题是：数组都是 Zero-Based，这就意味着我们的堆数据结构模型要发生改变
 
-![Zero-Based](http://bubkoo.qiniudn.com/heap-and-array-zero-based.png)
+![Zero-Based](./pic/heap-and-array-zero-based.png)
 
 相应的，几个计算公式也要作出相应调整：
 - Parent(i) = floor((i-1)/2)，i 的父节点下标(floor代表向下取整)
@@ -76,7 +76,7 @@
 
 最大堆调整（MAX‐HEAPIFY）的作用是保持最大堆的性质，是创建最大堆的核心子程序，作用过程如图所示：
 
-![Max-Heapify](http://bubkoo.qiniudn.com/MAX%E2%80%90HEAPIFY-Procedure.png)
+![Max-Heapify](./pic/MAX-HEAPIFY-Procedure.png)
 
 由于一次调整后，堆仍然违反堆性质，所以需要递归的测试，使得整个堆都满足堆性质，用 cpp 可以表示如下：
 
@@ -160,7 +160,7 @@ void max_heaplify_non_recursive(elem_t array[], int idx, int size)
 
 创建最大堆（Build-Max-Heap）的作用是将一个数组改造成一个最大堆，接受数组和堆大小两个参数，Build-Max-Heap 将自下而上的调用 Max-Heapify 来改造数组，建立最大堆。因为 Max-Heapify 能够保证下标 i 的结点之后结点都满足最大堆的性质，所以自下而上的调用 Max-Heapify 能够在改造过程中保持这一性质。如果最大堆的数量元素是 n，那么 Build-Max-Heap 从 Parent(n) 开始，往上依次调用 Max-Heapify。流程如下：
 
-![Build-Max-Heap](http://bubkoo.qiniudn.com/building-a-heap.png)
+![Build-Max-Heap](./pic/building-a-heap.png)
 
 用 cpp 描述如下：
 
@@ -182,7 +182,7 @@ build_max_heap(elem_t array[], int size) {
 
 堆排序（Heap-Sort）是堆排序的接口算法，Heap-Sort先调用Build-Max-Heap将数组改造为最大堆，然后将堆顶和堆底元素交换，之后将底部上升，最后重新调用Max-Heapify保持最大堆性质。由于堆顶元素必然是堆中最大的元素，所以一次操作之后，堆中存在的最大元素被分离出堆，重复n-1次之后，数组排列完毕。整个流程如下：
 
-![Heap-Sort](http://bubkoo.qiniudn.com/HeapSort.png)
+![Heap-Sort](./pic/HeapSort.png)
 
 用 cpp 描述如下：
 
@@ -204,7 +204,7 @@ heap_sort(elem_t array[8], int size)
 ```
 
 
-## JavaScript 语言实现 ##
+## cpp 语言实现 ##
 
 最后，把上面的整理为完整的 cpp 代码如下：
 
