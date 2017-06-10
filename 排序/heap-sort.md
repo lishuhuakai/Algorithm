@@ -76,7 +76,7 @@
 
 最大堆调整（MAX‐HEAPIFY）的作用是保持最大堆的性质，是创建最大堆的核心子程序，作用过程如图所示：
 
-![Max-Heapify](./pic/MAX-HEAPIFY-Procedure.png)
+![Max-Heapify](./pic/MAX‐HEAPIFY-Procedure.png)
 
 由于一次调整后，堆仍然违反堆性质，所以需要递归的测试，使得整个堆都满足堆性质，用 cpp 可以表示如下：
 
