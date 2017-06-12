@@ -91,7 +91,7 @@ sort(elem_t array[], int left, int right)
  * @param[in] array 欲排序的数组
  * @param[in] len 数组的大小
  * @return 无
- ***/
+ */
 void
 quick_sort(elem_t array[], int len)
 {

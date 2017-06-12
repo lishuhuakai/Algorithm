@@ -2,7 +2,7 @@
 
 快速排序是图灵奖得主[ C. R. A. Hoare](http://zh.wikipedia.org/wiki/%E6%9D%B1%E5%B0%BC%C2%B7%E9%9C%8D%E7%88%BE) 于 1960 年提出的一种划分交换排序。它采用了一种分治的策略，通常称其为[分治法(Divide-and-ConquerMethod)](http://en.wikipedia.org/wiki/Quicksort)。
 
-![C. R. A. Hoare](http://bubkoo.qiniudn.com/C.R.A.Hoare.jpg)
+![C. R. A. Hoare](./pic/C.R.A.Hoare.jpg)
 
 分治法的基本思想是：将原问题分解为若干个规模更小但结构与原问题相似的子问题。递归地解这些子问题，然后将这些子问题的解组合为原问题的解。
 
