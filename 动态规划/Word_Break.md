@@ -47,8 +47,8 @@ dict = ["cat", "cats", "and", "sand", "dog"]
 class Solution {
 	const static int SIZE = 1024;
 	const static int STRLEN = 250;
-	int match[SIZE][STRLEN];
-	bool dp[SIZE];
+	static int match[SIZE][STRLEN];
+	static bool dp[SIZE];
 private:
 	void makeSentences(vector<string>& sentences, vector<string>& wordDict, int idx, string s) {
 		/* 开始构建sentences */
@@ -101,4 +101,7 @@ public:
 		return sentences;
 	}
 };
+
+int Solution::match[SIZE][STRLEN];
+bool Solution::dp[SIZE];
 ```
