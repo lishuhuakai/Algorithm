@@ -36,15 +36,15 @@
 
    接下来需要从余下的边构成的集合 **E(G) -  {e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>, … ,e<sub>i</sub>}** 中选择一条边作为 **e<sub>i+1</sub>**, 被选择的边必须满足下面的两个条件:
 
-+ **e<sub>i+1</sub>**从顶点**v<sub>i</sub>** 出发,当然,无向图没有方向的概念,我们可以换个说法, **e<sub>i+1</sub>** 有一端连在顶点**v<sub>i</sub>**上.
++ **e<sub>i+1</sub>**从顶点**v<sub>i</sub>** 出发,当然,无向图没有方向的概念,我们可以换个说法, **e<sub>i+1</sub>** 有一端连在顶点 **v<sub>i</sub>** 上.
 
-+ 在顶点**v<sub>i</sub>** 处除非没有别的边可供选择，否则我们的 **e<sub>i+1</sub>** 不应是子图 **G<sub>i</sub> = G – {v<sub>0</sub>, e<sub>1</sub>, v<sub>1</sub>, e<sub>2</sub>, v<sub>2</sub>, …… , e<sub>i</sub>, v<sub>i</sub>}** 中的桥边. 假若只剩下桥边可选,除删除这条边之外,还应该再把孤立点从 **G<sub>i</sub>** 中移除(选择桥边必然会形成孤立的点).
++ 在顶点 **v<sub>i</sub>** 处除非没有别的边可供选择，否则我们的 **e<sub>i+1</sub>** 不应是子图 **G<sub>i</sub> = G – {v<sub>0</sub>, e<sub>1</sub>, v<sub>1</sub>, e<sub>2</sub>, v<sub>2</sub>, …… , e<sub>i</sub>, v<sub>i</sub>}** 中的桥边. 假若只剩下桥边可选,除删除这条边之外,还应该再把孤立点从 **G<sub>i</sub>** 中移除(选择桥边必然会形成孤立的点).
 
 选择完成后移除 **e<sub>i+1</sub>** 这条边.
 
 3. 当步骤 2 无法继续执行时停止算法.
 
-当算法停止时，所得到的简单回路 **P<sub>m</sub> = v<sub>0 e<sub>1</sub> v<sub>1</sub> e<sub>2</sub> v<sub>2</sub> e<sub>3</sub> v<sub>3</sub> …… e<sub>m</sub> v<sub>m</sub>  (v<sub>m = v<sub>0)** 为图 **G**的一条欧拉回路.
+当算法停止时，所得到的简单回路 **P<sub>m</sub> = v<sub>0 e<sub>1</sub> v<sub>1</sub> e<sub>2</sub> v<sub>2</sub> e<sub>3</sub> v<sub>3</sub> …… e<sub>m</sub> v<sub>m</sub>  (v<sub>m</sub> = v<sub>0</sub>)** 为图 **G**的一条欧拉回路.
 
 ### 例子
 
@@ -58,11 +58,11 @@
 
 ![](./pic/3.png)
 
-很显然形成了两个图，上下两个图不连通，即 **<v<sub>10</sub>,  v<sub>8</sub>>** 这条边就是所谓的桥边，算法中说除非别无他选，否则不应该选择桥边，那么这条边就不能选择。回到上面，由于**<v<sub>10</sub>, v<sub>4</sub>>** , **<v<sub>10</sub>, v<sub>3</sub>>** 都不是桥边，所以随便选择 **<v<sub>10</sub>, v<sub>4</sub>>**吧.  **Eu = {<v<sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>}** .
+很显然形成了两个图，上下两个图不连通，即 **<v<sub>10</sub>,  v<sub>8</sub>>** 这条边就是所谓的桥边，算法中说除非别无他选，否则不应该选择桥边，那么这条边就不能选择。回到上面，由于 **<v<sub>10</sub>, v<sub>4</sub>>**, **<v<sub>10</sub>, v<sub>3</sub>>** 都不是桥边，所以随便选择 **<v<sub>10</sub>, v<sub>4</sub>>**吧. **Eu = {<v<sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>}** .
 
 ![](./pic/4.png)
 
-到了 **v<sub>4</sub>** 这个点，**<v<sub>4</sub>, v<sub>2</sub>>** 这条边是桥边,但是 **别无选择**，只好选择这条边.选择完这条边这时不仅要从原图中删除这条边，由于点4成为了孤点，所以这个点也该从原图删除。**Eu = {<v<sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>}** .
+到了 **v<sub>4</sub>** 这个点, **<v<sub>4</sub>, v<sub>2</sub>>** 这条边是桥边,但是 **别无选择**，只好选择这条边.选择完这条边这时不仅要从原图中删除这条边，由于点4成为了孤点，所以这个点也该从原图删除。 **Eu = {<v<sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>}** .
 
 ![](./pic/5.png)
 
@@ -70,7 +70,7 @@
 
 ![](./pic/6.png)
 
-在 **v<sub>3</sub>** 选择边**<v<sub>3</sub>, v<sub>10</sub>>** 。**Eu = {<v<sub>1</sub>, v<sub>10</sub>>, <v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>, <v<sub>2</sub>, v<sub>3</sub>>, <v<sub>3</sub>, v<sub>10</sub>>}**.
+在 **v<sub>3</sub>** 选择边 **<v<sub>3</sub>, v<sub>10</sub>>** 。 **Eu = {<v<sub>1</sub>, v<sub>10</sub>>, <v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>, <v<sub>2</sub>, v<sub>3</sub>>, <v<sub>3</sub>, v<sub>10</sub>>}**.
 
 ![](./pic/7.png)
 
@@ -78,13 +78,13 @@
 
 ![](./pic/8.png)
 
-此时到了 **v<sub>8</sub>** 同第一次到达 **v<sub>10</sub>** 时的情况，不能选择 **<v<sub>8</sub>, v<sub>9</sub>>** 这条桥边,选择 **<v<sub>8</sub>, v<sub>6</sub>>** , **Eu = {<v</sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>, <v<sub>2</sub>, v<sub>3</sub>>,<v<sub>3</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>8</sub>>, <v<sub>8</sub>,v<sub>6</sub>>}**.
+此时到了 **v<sub>8</sub>** 同第一次到达 **v<sub>10</sub>** 时的情况，不能选择 **<v<sub>8</sub>, v<sub>9</sub>>** 这条桥边,选择 **<v<sub>8</sub>, v<sub>6</sub>>** , **Eu = {<v<sub>1</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>, <v<sub>4</sub>, v<sub>2</sub>>, <v<sub>2</sub>, v<sub>3</sub>>,<v<sub>3</sub>, v<sub>10</sub>>,<v<sub>10</sub>, v<sub>8</sub>>, <v<sub>8</sub>,v<sub>6</sub>>}**.
 
 ![](./pic/9.png)
 
-到达 **v<sub>6</sub>** ，选择 **<v<sub>6</sub>, v<sub>7</sub>>** ,删点删边, **Eu = {<v<sub>1</sub>,v</sub>10</sub>>,<v<sub>10</sub>,v</sub>4</sub>>,<v<sub>4</sub>,v<sub>2</sub>><v<sub>2</sub>,v<sub>3</sub>>,<v<sub>3</sub>,v<sub>10</sub>>,<v<sub>10</sub>,v<sub>8</sub>>,<v<sub>8</sub>,v<sub>6</sub>>, <v<sub>6</sub>, v<sub>7</sub>>}**.
+到达 **v<sub>6</sub>** ，选择 **<v<sub>6</sub>, v<sub>7</sub>>** ,删点删边, **Eu = {<v<sub>1</sub>,v<sub>10</sub>>,<v<sub>10</sub>,v<sub>4</sub>>,<v<sub>4</sub>,v<sub>2</sub>><v<sub>2</sub>,v<sub>3</sub>>,<v<sub>3</sub>,v<sub>10</sub>>,<v<sub>10</sub>,v<sub>8</sub>>,<v<sub>8</sub>,v<sub>6</sub>>, <v<sub>6</sub>, v<sub>7</sub>>}**.
 
-然后接下来的选择基本上没有悬念,依次选择边 **<v<sub>7</sub>,v<sub>8</sub>>, <v<sub>8</sub>,v<sub>9</sub>>, <v<sub>9</sub>, v</sub>1</sub>>** ，最后得到的欧拉边集**Eu = {<v<sub>1</sub>,v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>,<v<sub>4</sub>,v<sub>2</sub>> <v<sub>2</sub>,v</sub>3</sub>>,<v<sub>3</sub>, v<sub>10</sub>>,<v<sub>10</sub>,v<sub>8</sub>>,<v<sub>8</sub>, v<sub>6</sub>>,<v<sub>6</sub>,v<sub>7</sub>>,<v</sub>7</sub>,v<sub>8</sub>>, <v<sub>8</sub>, v<sub>9</sub>><v<sub>9</sub>, v<sub>1</sub>>}**,于是我们就得到了一条欧拉回路.
+然后接下来的选择基本上没有悬念,依次选择边 **<v<sub>7</sub>,v<sub>8</sub>>, <v<sub>8</sub>,v<sub>9</sub>>, <v<sub>9</sub>, v</sub>1</sub>>** ，最后得到的欧拉边集 **Eu = {<v<sub>1</sub>,v<sub>10</sub>>,<v<sub>10</sub>, v<sub>4</sub>>,<v<sub>4</sub>,v<sub>2</sub>> <v<sub>2</sub>,v<sub>3</sub>>,<v<sub>3</sub>, v<sub>10</sub>>,<v<sub>10</sub>,v<sub>8</sub>>,<v<sub>8</sub>, v<sub>6</sub>>,<v<sub>6</sub>,v<sub>7</sub>>,<v</sub>7</sub>,v<sub>8</sub>>, <v<sub>8</sub>, v<sub>9</sub>><v<sub>9</sub>, v<sub>1</sub>>}**,于是我们就得到了一条欧拉回路.
 
 这种算法虽然感觉不错,但是事实上,我们要判断一条边是否为桥边还是要费一番力气的,事实上,我们还有更加简洁的算法.
 
