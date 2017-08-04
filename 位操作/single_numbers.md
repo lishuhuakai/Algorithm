@@ -92,13 +92,13 @@ for (int i : array) {
 **k**为 **2** , **m** 为 **1** , 我们仅需要一个32-bit的整数( **x<sub>1<sub>** ) 作为计数器.由 **2<sup>m</sup> = k**,因此我们甚至不需要掩码值了,下面是完整的java代码:
 
 ```cpp
-    public int singleNumber(int[] A) {
-            int x1 = 0;      
-            for (int i : A) {
-               x1 ^= i;
-            }
-            return x1;
-       }
+public int singleNumber(int[] A) {
+        int x1 = 0;      
+        for (int i : A) {
+           x1 ^= i;
+        }
+        return x1;
+}
 ```
 
 2. **k = 3, p = 1**
@@ -106,53 +106,52 @@ for (int i : array) {
 一个数字出现 **1** 次,其余数字出现 **3** 次,我们需要两个32-bit的整数( **x<sub>2</sub> , x<sub>1</sub>** )做计数器. 由于 **2<sub>m</sub> > k** , 因此我们需要一个掩码,将 **k** 的二进制形式表示出来: **k = 11** , 有 **k<sub>1</sub> = 1, k<sub>2</sub> = 1</sub>** ,因此,我们有掩码 **mask = ~(x<sub>1</sub> & x<sub>2</sub>)**.完整的java代码如下:
 
 ```cpp
-       public int singleNumber(int[] A) {
-               int x1 = 0;   
-               int x2 = 0; 
-               int mask = 0;
-         
-               for (int i : A) {
-                  x2 ^= x1 & i; // x2 = x2 ^ (x1 & i)
-                  x1 ^= i; // x1 = x1 ^ i
-                  mask = ~(x1 & x2); 
-                  x2 &= mask;
-                  x1 &= mask;
-               }
+public int singleNumber(int[] A) {
+        int x1 = 0;   
+        int x2 = 0; 
+        int mask = 0;
+  
+        for (int i : A) {
+           x2 ^= x1 & i; // x2 = x2 ^ (x1 & i)
+           x1 ^= i; // x1 = x1 ^ i
+           mask = ~(x1 & x2); 
+           x2 &= mask;
+           x1 &= mask;
+        }
 
-               return x1;  
-         // p = 1, in binary form p = '01', then p1 = 1, so we should return x1; 
-         // if p = 2, in binary form p = '10', then p2 = 1, so we should return x2.
-       }
+        return x1;  
+        // p = 1, in binary form p = '01', then p1 = 1, so we should return x1; 
+        // if p = 2, in binary form p = '10', then p2 = 1, so we should return x2.
+}
 ```
 
-      ​
 
 2. **k = 5, p = 3**
 
 **k** 为 **5** ,那么 **m = 3**, 我们需要 **3** 个32-bit的整数( **x<sub>3</sub>, x<sub>2</sub>, x</sub>1</sub>** )作为计数器. 由于 **2<sup>m</sup> > k** 因此,我们需要一个掩码.将 **k** 写成二进制的形式: **k = 101**, 因此 **k<sub>1</sub>= 1, k<sub>2</sub> = 0, k<sub>3</sub> = 1** ,所以 **mask = ~(x<sub>1</sub> & ~x<sub>2</sub> & x<sub>3</sub>)** , java代码如下:
 
 ```java
-    public int singleNumber(int[] A) {
-            int x1 = 0;   
-            int x2 = 0; 
-            int x3  = 0;
-            int mask = 0;
-      
-            for (int i : A) {
-               x3 ^= x2 & x1 & i;
-               x2 ^= x1 & i;
-               x1 ^= i;
-               mask = ~(x1 & ~x2 & x3);
-               x3 &= mask;
-               x2 &= mask;
-               x1 &= mask;
-            }
+public int singleNumber(int[] A) {
+        int x1 = 0;   
+        int x2 = 0; 
+        int x3  = 0;
+        int mask = 0;
+  
+        for (int i : A) {
+           x3 ^= x2 & x1 & i;
+           x2 ^= x1 & i;
+           x1 ^= i;
+           mask = ~(x1 & ~x2 & x3);
+           x3 &= mask;
+           x2 &= mask;
+           x1 &= mask;
+        }
 
-            return x1;  // p = 3, in binary form p = '011', then p1 = p2 = 1, 
-                        // so we can return either x1 or x2; 
-                        // But if p = 4, in binary form p = '100', then only p3 = 1, 
-                        // which implies we can only return x3.
-   }
+        return x1;  // p = 3, in binary form p = '011', then p1 = p2 = 1, 
+                    // so we can return either x1 or x2; 
+                    // But if p = 4, in binary form p = '100', then only p3 = 1, 
+                    // which implies we can only return x3.
+}
 ```
 
 你可以很快想到其他的例子.
