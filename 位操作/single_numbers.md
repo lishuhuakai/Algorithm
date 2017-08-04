@@ -131,7 +131,7 @@ for (int i : array) {
 
 2. **k = 5, p = 3**
 
-**k** 为 **5** ,那么 **m = 3**, 我们需要 **3** 个32-bit的整数( **x<sub>3</sub>, x<sub>2</sub>, x</sub>1</sub>** )作为计数器. 由于 **2<sub>m</sub> > k** 因此,我们需要一个掩码.将 **k** 写成二进制的形式: **k = 101**, 因此 **k<sub>1</sub>= 1, k<sub>2</sub> = 0, k<sub>3</sub> = 1** ,所以 **mask = ~(x<sub>1</sub> & ~x<sub>2</sub> & x<sub>3</sub>)** , java代码如下:
+**k** 为 **5** ,那么 **m = 3**, 我们需要 **3** 个32-bit的整数( **x<sub>3</sub>, x<sub>2</sub>, x</sub>1</sub>** )作为计数器. 由于 **2<sup>m</sup> > k** 因此,我们需要一个掩码.将 **k** 写成二进制的形式: **k = 101**, 因此 **k<sub>1</sub>= 1, k<sub>2</sub> = 0, k<sub>3</sub> = 1** ,所以 **mask = ~(x<sub>1</sub> & ~x<sub>2</sub> & x<sub>3</sub>)** , java代码如下:
 
 ```java
     public int singleNumber(int[] A) {
