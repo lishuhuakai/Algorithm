@@ -81,7 +81,7 @@ for (int i : array) {
 
 现在一切问题都解决了,首先计算 **p' = p % k**, 并将 **p'** 表示成它的二进制形式,如果 **p'<sub>j</sub> = 1**, 则 **x<sub>j</sub>** 就是最终的结果( **j = 1** 到 **m** ), 也就是说,答案可以有多个.
 
-最后总结一下,整个算法的时间复杂度为 **O(n * log<sub>k</sub>)** , 空间复杂度为 **o(log<sub>k</sub>)**.
+最后总结一下,整个算法的时间复杂度为 **O(n * logk)** , 空间复杂度为 **o(logk)**.
 
 
 
@@ -91,7 +91,7 @@ for (int i : array) {
 
 其余数字都出现 **2** 次,另外一个数字出现 **1** 次,这样的话,我们需要一个32-bit的整数作为计数器, 
 
-**k**为 **2** , **m** 为 **1** , 我们仅需要一个32-bit的整数( **x<sup>1<sup>** ) 作为计数器.由 **2<sup>m</sup> = k**,因此我们甚至不需要掩码值了,下面是完整的java代码:
+**k**为 **2** , **m** 为 **1** , 我们仅需要一个32-bit的整数( **x<sub>1<sub>** ) 作为计数器.由 **2<sup>m</sup> = k**,因此我们甚至不需要掩码值了,下面是完整的java代码:
 
 ```cpp
     public int singleNumber(int[] A) {
@@ -105,7 +105,7 @@ for (int i : array) {
 
 2. **k = 3, p = 1**
 
-一个数字出现 **1** 次,其余数字出现 **3** 次,我们需要两个32-bit的整数( **x<sub>2</sub> , x<sub>1</sub>** )做计数器. 由于 **2<sub>m</sub> > k** , 因此我们需要一个掩码,将 **k** 的二进制形式表示出来: **k = 11** , 有 **k<sub>1</sub> = 1, k<sub>2</sub> = 1</sub>,因此,我们有掩码 **mask = ~(x<sub>1</sub> & x<sub>2</sub>)**.完整的java代码如下:
+一个数字出现 **1** 次,其余数字出现 **3** 次,我们需要两个32-bit的整数( **x<sub>2</sub> , x<sub>1</sub>** )做计数器. 由于 **2<sub>m</sub> > k** , 因此我们需要一个掩码,将 **k** 的二进制形式表示出来: **k = 11** , 有 **k<sub>1</sub> = 1, k<sub>2</sub> = 1</sub>** ,因此,我们有掩码 **mask = ~(x<sub>1</sub> & x<sub>2</sub>)**.完整的java代码如下:
 
 ```cpp
        public int singleNumber(int[] A) {
@@ -131,7 +131,7 @@ for (int i : array) {
 
 2. **k = 5, p = 3**
 
-**k** 为 **5** ,那么 **m = 3**, 我们需要 **3** 个32-bit的整数( **x<sub>3</sub>, x<sub>2</sub>, x</sub>1</sub>** )作为计数器. 由于 **2<sub>m</sub> > k** 因此,我们需要一个掩码.将k写成二进制的形式: **k = 101**, 因此 **k<sub>1</sub>= 1, k<sub>2</sub> = 0, k<sub>3</sub> = 1** ,所以 **mask = ~(x<sub>1</sub> & ~x<sub>2</sub> & x<sub>3</sub>)** , java代码如下:
+**k** 为 **5** ,那么 **m = 3**, 我们需要 **3** 个32-bit的整数( **x<sub>3</sub>, x<sub>2</sub>, x</sub>1</sub>** )作为计数器. 由于 **2<sub>m</sub> > k** 因此,我们需要一个掩码.将 **k** 写成二进制的形式: **k = 101**, 因此 **k<sub>1</sub>= 1, k<sub>2</sub> = 0, k<sub>3</sub> = 1** ,所以 **mask = ~(x<sub>1</sub> & ~x<sub>2</sub> & x<sub>3</sub>)** , java代码如下:
 
 ```java
     public int singleNumber(int[] A) {
