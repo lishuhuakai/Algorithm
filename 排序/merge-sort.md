@@ -75,7 +75,7 @@ sort(elem_t array[], int left, int right)
 		 * 开始合并两个数组.这里的主题思想是,让array[left, mid]中较大的部分
 		 * 迁移到右侧.
 		 */
-		if (array[l] >= array[h]) {
+		if (array[l] > array[h]) {
 			elem_t tmp = array[h];
 			for (int i = h - 1; i >= l; i--) {
 				array[i + 1] = array[i]; 
@@ -85,7 +85,7 @@ sort(elem_t array[], int left, int right)
 		}
 		/* 不管交换与否,l总要向前移动 */
 		l++;
-	}
+    }
 }
 
 
@@ -102,7 +102,37 @@ merge_sort(elem_t array[], int len)
 }
 ```
 
+## 稳定性分析 ##
+
+归并排序是一个 **稳定** 的排序算法.
+
+我们只需要看归并的过程就可以了:
+
+```cpp
+    /* array[left, mid]以及array[mid+1, right]都已经有序 */
+	int l = left, h = mid + 1;
+	while (l < h && h <= right) {
+		/* l指向array[left, mid]这一边, h指向array[mid+1, right]这一边,
+		 * 开始合并两个数组.这里的主题思想是,让array[left, mid]中较大的部分
+		 * 迁移到右侧.
+		 */
+		if (array[l] > array[h]) {
+			elem_t tmp = array[h];
+			for (int i = h - 1; i >= l; i--) {
+				array[i + 1] = array[i]; 
+			}
+			array[l] = tmp;
+			h++;
+		}
+		/* 不管交换与否,l总要向前移动 */
+		l++;
+    }
+```
+
+只有当 `l` 下标对应的元素等于 `h` 下标对应的元素, 只执行 `l++` , 这意味着两个相等的值的相对位置没有发生改变. 当然,我们只要对代码做一点点修改, `array[l] >= array[h]`, 算法立马变得不稳定了.
+
 ## 参考文章 ##
+
 - [Wikipedia](http://en.wikipedia.org/wiki/Merge_sort)
 - [维基百科，自由的百科全书](http://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
 - [Merge Sort](http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Sorting/mergeSort.htm)

@@ -83,7 +83,29 @@ shell_sort(elem_t array[], int len)
 }
 ```
 
+## 稳定性分析 ##
+
+希尔排序是一个 **不稳定** 的排序算法.
+
+一个简单的例子:
+
+```shell
+12   20   15   15
+ ↑    ↑    ↑   ↑ 
+ └────|────┘   | 
+      └────────┘
+```
+
+首先将这两组排好序:
+
+```shell
+12   15   15   20
+```
+
+显然不稳定.
+
 ## 参考文章 ##
+
 - [维基百科，自由的百科全书](http://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
 - [希尔排序基本思想](http://student.zjzk.cn/course_ware/data_structure/web/paixu/paixu8.2.2.1.htm)
 - [[演算法] 希爾排序法(Shell Sort)](http://notepad.yehyeh.net/Content/Algorithm/Sort/Shell/Shell.php)

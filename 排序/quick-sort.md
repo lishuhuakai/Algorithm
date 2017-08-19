@@ -65,13 +65,12 @@ function partition(a, left, right, pivotIndex)
 
   循环 i == 0 时，storeIndex == 0，找到一个小于基准元素的元素 3，那么将其与 storeIndex 所在位置的元素交换位置，这里是 3 自身，交换后将 storeIndex 自增 1，storeIndex == 1：
 
-  ``` html
+``` html
                                 pivot
                                   ↓
   3   7   8   4   2   1   9   5   5
   ↑
   storeIndex
-  ```
 ```
 
   循环 i == 3 时，storeIndex == 1，找到一个小于基准元素的元素 4：
@@ -82,78 +81,78 @@ function partition(a, left, right, pivotIndex)
   3   7   8   4   2   1   9   5   5
       ↑       ↑
  storeIndex   i
-```
+  ```
 
   交换位置后，storeIndex 自增 1，storeIndex == 2：
 
-  ``` html
+``` html
                                 pivot
                                   ↓
   3   4   8   7   2   1   9   5   5
           ↑           
      storeIndex
-  ```
+```
 
   循环 i == 4 时，storeIndex == 2，找到一个小于基准元素的元素 2：
 
-  ``` html
+``` html
           ┌───────┐             pivot
           ↓       ↓               ↓
   3   4   8   7   2   1   9   5   5
           ↑       ↑
      storeIndex   i
-  ```
+```
 
   交换位置后，storeIndex 自增 1，storeIndex == 3：
 
-  ``` html
+``` html
                                 pivot
                                   ↓
   3   4   2   7   8   1   9   5   5
               ↑           
          storeIndex       
-  ```
+```
 
 
   循环 i == 5 时，storeIndex == 3，找到一个小于基准元素的元素 1：
 
-  ``` html
+``` html
               ┌───────┐         pivot
               ↓       ↓           ↓
   3   4   2   7   8   1   9   5   5
               ↑       ↑
          storeIndex   i
-  ```
+```
 
   交换后位置后，storeIndex 自增 1，storeIndex == 4：
 
-  ``` html
+``` html
                                 pivot
                                   ↓
   3   4   2   1   8   7   9   5   5
                   ↑           
              storeIndex        
-  ```
+```
 
   循环 i == 7 时，storeIndex == 4，找到一个小于等于基准元素的元素 5：
 
-  ``` html
+``` html
                   ┌───────────┐ pivot
                   ↓           ↓   ↓
   3   4   2   1   8   7   9   5   5
                   ↑           ↑
              storeIndex       i      
-  ```
+```
 
   交换后位置后，storeIndex 自增 1，storeIndex == 5：
 
-  ``` html
+``` html
                                 pivot
                                   ↓
   3   4   2   1   5   7   9   8   5
                       ↑           
                  storeIndex          
-  ```
+```
 
 
 4. 循环结束后交换基准元素和 storeIndex 位置的元素的位置：
@@ -275,7 +274,21 @@ quick_sort(elem_t array[], int len)
 }
 ```
 
+## 稳定性分析 ##
 
+快速排序是一个 **不稳定** 的排序算法.
+
+举一个有意思的例子.
+
+```shell
+┌───────┐
+↓       ↓
+5   3   3   4   3
+        ↑
+      pivot
+```
+
+你可以尝试一下,左右两个指针扫描, 最终,最后的3会变成有序序列中的第一个3.
 
 ## 参考文章 ##
 - [wiki Quicksort](http://en.wikipedia.org/wiki/Quicksort)

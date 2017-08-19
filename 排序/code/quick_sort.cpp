@@ -47,11 +47,11 @@ partition(elem_t array[], int left, int right)
 }
 
 /**
-* @brief partition的另外一个实现版本.
-* @param[in] array 欲切分的数组
-* @param[in] left, right 数组下标,需保证left < right
-* @return 排列后切分数的下标
-**/
+ * @brief partition的另外一个实现版本.
+ * @param[in] array 欲切分的数组
+ * @param[in] left, right 数组下标,需保证left < right
+ * @return 排列后切分数的下标
+ **/
 int
 partition_ex(elem_t array[], int left, int right)
 {

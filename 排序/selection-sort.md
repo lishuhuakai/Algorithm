@@ -144,7 +144,48 @@ selection_sort(elem_t array[], int len)
 }
 ```
 
+## 稳定性分析 ##
+
+选择排序是一个 **不稳定** 的排序算法.
+
+举一个例子:
+
+```shell
+           min
+            ↓
+5   8   5   2   9
+↑           ↑
+└───────────┘
+```
+
+第一次会将5和2进行交换.
+
+```shell
+       min
+        ↓
+2   8   5   5   9
+    ↑   ↑
+    └───┘
+```
+
+第二次将8和5交换.
+
+```shell
+           min
+            ↓
+2   5   8   5   9
+        ↑   ↑
+        └───┘
+```
+
+第三次将8和5交换.
+```shell
+2   5   5   8   9
+```
+排序完成.
+
 ## 参考文章 ##
+
 - [en.wikipedia.org](http://en.wikipedia.org/wiki/Selection_sort)
 - [wikibooks](http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Selection_sort)
 - [维基百科](http://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
