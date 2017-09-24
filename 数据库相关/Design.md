@@ -2,11 +2,11 @@
 
 # 主键、外键
 
-关系型数据库中的一条记录中有若干个属性，若其中某一个`属性组`(注意是组)能唯一标识一条记录，该`属性组`就可以成为一个主键。比如下面的三个表中（主键用下划线标注）。
+关系型数据库中的一条记录中有若干个属性，若其中某一个`属性组`(注意是组)能唯一标识一条记录，该`属性组`就可以成为一个主键。比如下面的三个表中（主键加粗标注）。
 
-* 学生表( _学号_ ，姓名，性别，班级) 
-* 课程表( _课程编号_ ，课程名，学分) 
-* 成绩表( _学号，课程号_ ，成绩)
+* 学生表( **学号** ，姓名，性别，班级) 
+* 课程表( **课程编号** ，课程名，学分) 
+* 成绩表( **学号，课程号** ，成绩)
 
 其中每个学生的学号是唯一的，学号就是一个主键。其中课程编号是唯一的，课程编号就是一个主键。成绩表中单一一个属性无法唯一标识一条记录，学号和课程号的组合才可以唯一标识一条记录，所以学号和课程号的属性组是一个主键。
 
@@ -17,8 +17,8 @@
 1. 惟一地标识一行。
 2. 作为一个可以被外键有效引用的对象。
 
-［[候选关键字](http://www.nowcoder.com/questionTerminal/088587c25467478884128c0cb31eeeb8)］  
-［[主键、外键](http://www.nowcoder.com/questionTerminal/70100692594e4130a6b3efe344ef3874)］  
+［[候选关键字](http://www.nowcoder.com/questionTerminal/088587c25467478884128c0cb31eeeb8)］ 
+［[主键、外键](http://www.nowcoder.com/questionTerminal/70100692594e4130a6b3efe344ef3874)］
 
 # 原子域和第一范式
 
@@ -26,7 +26,7 @@
 
 仅仅符合1NF的设计，会存在数据冗余过大，插入异常，删除异常，修改异常的问题，例如下表中的设计：
 
-![][1]
+![](./pic/DatabaseSystem_Design_1.png)
 
 存在着下面的问题：
 
@@ -55,18 +55,18 @@
 
 对于上面的表，所有的函数依赖关系如下图：
 
-![][2]
+![](./pic/DatabaseSystem_Design_2.png)
 
 候选码为（学号，课名），主属性为（学号，课名），其它属性为非主属性。对于（学号，课名）➞姓名，有学号➞姓名，存在非主属性`姓名`对于候选码的部分函数依赖；同理还存在非主属性`系名，系主任`对于候选码的部分函数依赖。
 
 为了使上面表格符合 2NF 要求，必须消除这些部分函数依赖。通过将大数据表拆分成两个或者多个更小的表。将数据表拆分，达到更高一级范式要求的过程，叫做`模式分解`，模式分解的结果并不唯一，下面是一种分解结果：
 
-1. 选课表（ _学号，课名_，分数）  
-2. 学生 （ _学号_，姓名，系名，系主任）
+1. 选课表（ **学号，课名**，分数）  
+2. 学生 （ **学号**，姓名，系名，系主任）
 
 新的数据表格如下：
 
-![][4]
+![](./pic/DatabaseSystem_Design_4.png)
 
 满足 2NF 后，之前的问题
 
@@ -81,19 +81,19 @@
 
 对于上面满足2NF的表，函数依赖关系如下图：
 
-![][3]
+![](./pic/DatabaseSystem_Design_3.png)
 
 对于选课表，满足3NF。对于学生表，存在有传递函数依赖，学号➞系名，系名➞系主任，因此不符合 3NF。
 
 为了让数据表设计达到 3NF，必须进一步进行模式分解如下：
 
-1. 选课表（ _学号，课名_，分数）  
-2. 学生 （ _学号_，姓名，系名） 
-3. 系（ _系名_，系主任）
+1. 选课表（ **学号，课名**，分数）  
+2. 学生 （**学号**，姓名，系名） 
+3. 系（**系名**，系主任）
 
 新的数据表如下：
 
-![][5]
+![](./pic/DatabaseSystem_Design_5.png)
 
 满足3NF后情况有了很大的改观，基本上解决了数据冗余过大，插入异常，修改异常，删除异常的问题。
 
@@ -110,7 +110,7 @@
 
 所以不存在非主属性对候选码的部分函数依赖和传递函数依赖，此关系模式属于3NF。基于此关系模式的关系（具体的数据）可能如图所示：
 
-![][6]
+![](./pic/DatabaseSystem_Design_6.png)
 
 那么这个关系模式是否存在问题呢？我们来看以下几种操作：
 
@@ -144,19 +144,10 @@
 
 # 更多阅读
 
-[解释一下关系数据库的第一第二第三范式？](https://www.zhihu.com/question/24696366)   
-[数据库设计之概念结构设计：E-R图详解](http://blog.csdn.net/zxq1138634642/article/details/9121363)  
-[数据库设计 Step by Step (1)](http://www.cnblogs.com/DBFocus/archive/2011/03/27/1996655.html)  
-[数据库设计 Step by Step (2)——数据库生命周期](http://www.cnblogs.com/DBFocus/archive/2011/04/09/2010904.html)  
-[数据库设计 Step by Step (3)——基本ER模型构件](http://www.cnblogs.com/DBFocus/archive/2011/04/24/2026142.html)  
-
-
-[1]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_1.png
-[2]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_2.png
-[3]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_3.png
-[4]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_4.png
-[5]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_5.png
-[6]: http://7xrlu9.com1.z0.glb.clouddn.com/DatabaseSystem_Design_6.png
-
+[解释一下关系数据库的第一第二第三范式？](https://www.zhihu.com/question/24696366) 
+[数据库设计之概念结构设计：E-R图详解](http://blog.csdn.net/zxq1138634642/article/details/9121363) 
+[数据库设计 Step by Step (1)](http://www.cnblogs.com/DBFocus/archive/2011/03/27/1996655.html) 
+[数据库设计 Step by Step (2)——数据库生命周期](http://www.cnblogs.com/DBFocus/archive/2011/04/09/2010904.html) 
+[数据库设计 Step by Step (3)——基本ER模型构件](http://www.cnblogs.com/DBFocus/archive/2011/04/24/2026142.html) 
 
 
